@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" >
+function LoadCalc() {
+debugger
+	var FlowValue = parseFloat(document.getElementById("FlowRate").value);
+	var FCConc = parseFloat(document.getElementById("Conc").value);
+	var FlowUnits = document.getElementById("units");
+debugger	
+	if (FlowValue != null && FCConc != null && FlowUnits != null) {
+			var flowperday = CalcFlow(FlowValue, FlowUnits, FCConc)
+			var FecalConc = FCConc * 10 * 28.3
+			var PollutantLoad = flowperday * FecalConc
+		}
+debugger
+	window.close()
+}
+function CalcFlow(FlowValue, FlowUnits, FCConc) {
+      Switch(FlowUnits) {
+        Case "cfs":
+            CalcFlow = FlowValue * 60 * 60 * 24;
+            break;
+debugger
+        Case "cfd":
+            CalcFlow = FlowValue
+            break;
+        Case "gpm":
+            CalcFlow = FlowValue * 60 * 24 / 7.48
+            break;
+        Case "gpd":
+            CalcFlow = FlowValue / 7.48
+            break;
+        Case "mgd":
+            CalcFlow = FlowValue * 1000000 / 7.48
+            
+    	}
+    debugger
+    }	
+}
+</script>
+<style>
+	div.columns       { width: 400px; }
+	div.columns div   { width: 200px; height: 30px; float: left; background-color: #cccccc;}
+	form					{background-color: #cccccc;}
+</style>
+</head>
+<body>
+<!-- Define Form for input of load data -->
+<h1>Discharge Calculations</h1>
+<h3>Enter Load Parameters</h3>
+<div class="columns">
+	<!-- Column headings -->
+    <div>
+    	Flow Rate
+    </div>
+    <div>
+    	Units of Measure
+    </div>
+	<!-- Data entry fields -->
+    <form id = "LoadDisch" onsubmit = "LoadCalc()">
+	    <div>
+	    	<input type="number" id="FlowRate" name="FlowRate" value=0/>  
+	    </div>
+	    <div>	 
+	  		<select id="units" name="units">
+	    		<option value="gpm">gallons/min</option>
+	    		<option value="gpd">gallons/day</option>
+	    		<option value="mgd">million gallons/day</option>
+	    		<option value="cfd">ft³/day (cfd)</option>
+	    		<option value="cfs">ft³/sec (cfs)</option>
+	  		</select>
+	    </div>
+	    <div>
+	    </div>	    
+	    <div>
+	    </div>
+    <div>
+    	Pollutant Concentration
+    </div>
+    <div>
+    </div>
+	    <div>
+	    	<input type="number" id="Conc" name="Concentration" value=0/>  
+	    </div>
+	    <div>	 
+	  		<select id="Cunits" name="units">
+	    		<option value="FC/100 mL">FC/100 mL</option>
+	    		<option value="mgd">million gallons/day</option>
+	    		<option value="cfs">cubic ft/sec</option>
+	  		</select>
+	    </div>
+	    <div>
+	    </div>	    
+	    <div>
+	    </div>	    
+	    <div>
+	    </div>
+	    <div>
+	    <input type="submit" value="OK" id='' >
+    </div>
+    </form>
+</div>
+</body>
+</html>
