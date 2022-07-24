@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" >
+
+function NextScreen(a,b) {
+	if (a == "Discharge" && b == "English"){
+		window.open("LoadCalc_Disch_Eng.html")	
+	}else if (a == "Discharge" && b == "Metric"){
+		window.open("LoadCalc_Disch_Met.html")
+	}else {	
+		window.open("LoadCalc_Mar.html")
+	}
+}
+</script>
+<style>
+	div.columns       { width: 450px; }
+	div.columns div   { width: 150px; height: 70px; float: left; background-color: #cccccc;}
+	form					{background-color: #cccccc;}
+</style>
+</head>
+<body style="background-color: #f7f7d4;>
+<h1>Volumetric Dilution Calculator</h1>
+<h3>Select the type of calculations to perform</h3>
+<div class="columns">
+    <div></div>
+    <div>
+    	Type of Analysis
+    </div>
+    <div>
+    	Units of Measure
+    </div>
+</div>
+<div class="columns">
+    <div></div>
+    <form id = "Initial" onsubmit = "NextScreen(TypeAnalysis.value, TypeUnits.value)">
+    <div>
+    	<input type="radio" id="discharge" name="TypeAnalysis" value="Discharge"/>
+    	<label for="discharge">Discharge</label><br><br>
+    	<input type="radio" id="marina" name="TypeAnalysis" value="Marina"/>
+    	<label for="marina">Marina</label>
+    </div>
+    <div>
+    	<input type="radio" id="english" name="TypeUnits" value="English"/>
+    	<label for="english">English</label><br><br>
+    	<input type="radio" id="metric" name="TypeUnits" value="Metric"/>
+    	<label for="metric">Metric</label>
+    	<br><br>
+    	 <input type="submit" value="Continue" id='' >
+    </form>
+    
+</div>
+
+</body>
+</html>
