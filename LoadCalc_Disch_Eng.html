@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="Bluefish 2.2.12" />
+	<meta name="created" content="2022-07-21T14:43:26.601201683"/>
+	<meta name="changed" content="2022-07-21T23:45:54.484971923"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		td p { orphans: 0; widows: 0; background: transparent }
+	</style>
+</head>
+
+<script type="text/javascript" src="VolDil.js"></script>
+
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><p style="line-height: 100%; margin-bottom: 0in">
+<font size="4" style="font-size: 16pt"><b>Discharge Calculations</b></font></p>
+<p style="line-height: 100%; margin-bottom: 0in"><br/></p>
+
+<!----------- Input Box for Load Factors ------------------>
+<p style="line-height: 100%; margin-bottom: 0in">Load Factors</p>
+<table width="643" cellpadding="4" cellspacing="0" bgcolor="#dddddd" style="background: #dddddd">
+	<col width="237"/>
+
+	<col width="82"/>
+
+	<col width="138"/>
+
+	<col width="152"/>
+
+	<tr style="background: transparent" valign="top">
+		<td width="237" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in"><p>
+			Enter flow rate of the discharge:</p>
+		</td>
+		<td width="82" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: none; border-left: none; border-right: none; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0in; padding-right: 0in">
+			<font size="3" style="font-size: 12pt"><input type="text"
+			id="FlowRate" name="FlowRate"/> </font>
+		</td>
+		<td width="138" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: none; border-left: none; border-right: none; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0in; padding-right: 0in">
+					<select id="units" name="units">
+			   		<option value="gpm">gallons/min</option>
+			   		<option value="gpd">gallons/day</option>
+			   		<option value="mgd">million gallons/day (MGD)</option> 
+			  			<option value="cfd">ft³/day</option>
+			  			<option value="cfs">ft³/sec (cfs)</option>	 
+					</select>
+		</td>
+		<td width="152" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: none; border-left: none; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.04in"><p>
+			← check the units</p>
+		</td>
+	</tr>
+	<tr style="background: transparent" valign="top">
+		<td width="237" height="8" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in"><p>
+			<br/>
+
+			</p>
+		</td>
+		<td width="82" bgcolor="#dddddd" style="background: #dddddd; border: none; padding: 0in"><p>
+			<br/>
+
+			</p>
+		</td>
+		<td width="138" bgcolor="#dddddd" style="background: #dddddd; border: none; padding: 0in"><p>
+			<br/>
+
+			</p>
+		</td>
+		<td width="152" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.04in"><p>
+			<br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr style="background: transparent" valign="top">
+		<td width="237" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			Supply the FC concentration in the discharge:</p>
+		</td>
+		<td width="82" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0in">
+			<font size="3" style="font-size: 12pt">
+			<input type="button" value="Click here for options to use" onclick="Updat()"></font>
+		</td>
+		<td colspan="2" width="298" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0in"><p>
+			<p id="FCtext"> </p></p>
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0in"><a name="__DdeLink__83_3487231805"></a>
+<br/>
+</p>
+
+<!-------------- Display Box for Load Calculations ------------------------>
+<table hidden id="tblLoad" width="643" cellpadding="4" cellspacing="0" style="background: transparent">
+	<col width="312"/>
+
+	<col width="313"/>
+
+	<tr style="background: transparent" valign="top">
+		<td width="312" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			<font size="3" style="font-size: 12pt"><b>Load = Flow x
+			Concentration</b></font></p>
+			<p></p>
+			<p><font size="3" style="font-size: 12pt"><p id= "DisplayLoad"
+			class="nums"> </p></font></p>
+		</td>
+		<td width="313" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0.04in">
+		<p><br/> </p>
+		<p><br/>	</p>
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+
+</p>
+
+
+<p hidden id="lblVolNeeded" style="line-height: 100%; margin-bottom: 0in"><b>Calculate the
+Volume needed for dilution</b></p>
+<table hidden id="tblVol" width="643" cellpadding="4" cellspacing="0">
+	<col width="205"/>
+
+	<col width="206"/>
+
+	<col width="205"/>
+
+	<tr valign="top">
+		<td width="205" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			Enter the Target Value for the Fecal Coliform concentration in the
+			receiving water (typically the applicable NSSP Geometric Mean
+			criterion);</p>
+		</td>
+		<td width="206" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0.04in 0in">
+			<font size="3" style="font-size: 12pt">
+			<input type="text" id="GetTarget" name="GetTarget"/></font>
+		</td>
+		<td width="205" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0.04in"><p>
+			<font size="3" style="font-size: 12pt">FC/100 mL</font></p>
+			<input type="button" value="Calculate Volume" onclick="CalcVol()" />
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+</p>
+
+<table hidden id="tblVolNeeded" width="643" cellpadding="4" cellspacing="0" style="background: transparent">
+	<col width="327"/>
+
+	<col width="298"/>
+
+	<tr style="background: transparent" valign="top">
+		<td width="327" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			<font size="3" style="font-size: 12pt"><b>Volume needed = Load ÷ Target Concentration</b></font></p>
+			<p><br/></p>
+			<p><font size="3" style="font-size: 12pt"><p id= "VolNeeded"
+			class="nums"> </p></font></p>
+		</td>
+		<td width="298" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0.04in"><p>
+			<br/>
+			</p>
+
+			<p id=”VolUnits”> </p></font></p>
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+</p>
+
+<!-------------------------- Input Box for Area Calculations ---------------------------->
+<p hidden id="lblAreaNeeded" style="line-height: 100%; margin-bottom: 0in"><b>Calculate the
+Area needed for dilution</b></p>
+<table hidden id="lblWaterDepth" width="643" cellpadding="4" cellspacing="0">
+	<col width="205"/>
+
+	<col width="206"/>
+
+	<col width="205"/>
+
+	<tr valign="top">
+		<td width="205" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			Enter the average water depth in the waters suspected to be
+			impacted:</p>
+		</td>
+		<td width="206" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0.04in 0in">
+			<font size="3" style="font-size: 12pt">
+			<input type="text" id="WaterDepth" name="WaterDepth"/></font>
+		</td>
+		<td width="205" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0.04in"><p>
+			<font size="3" style="font-size: 12pt"><p id=”DepthUnits”>
+			</p></font></p>
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+
+</p>
+</body>
+</html>
