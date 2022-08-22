@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+<script type="text/javascript">
+function CloseMe() {
+		var w = window.close('','_parent','');
+}
+</script>
+
+</head>
+
+<body>
+<H1>Volumetric Dilution Calculator - Instructions</h1>
+<p>
+This online tool will perform the calculations involved in a simple volumetric dilution 
+analysis either for a wastewater discharge (including spills), or for calculation of the area of impact
+of a marina.  The tool is intended to provide a conservative estimate of the potential size of a closure 
+area needed to dilute a quantity of fecal coliform bacteria down to the level of a criterion that
+you provide.  This criterion is typically the applicable National Shellfish Sanitation Program (NSSP) 
+geometric mean for the current classification of the waters.
+</p>
+<p>There are other more precise methods to estimate closure areas.  These include water quality models, 
+dye and drogue studies.  If use of a more precise method is an option,it should be employed instead of 
+the dilution analysis.  However, if you are dealing with an emergency condition such as a spill and an
+estimate is needed of the area to close, this dilution analysis can be a valuable tool.  THIS ONLINE 
+TOOL IS INTENDED ONLY FOR TRAINING PURPOSES.  CONSULT WITH THE U.S. FOOD AND DRUG ADMINISTRATION FOR 
+THE APPROPRIATE TOOL(S) TO USE FOR REGULATORY PURPOSES.
+</p>
+<p>
+The program will start by asking if you want to do the calculations for a discharge or a marina.  You 
+will also need to designate if you want to enter your data and see results in Standard U.S. units or 
+Metric units.  It also prompts for the Latitude and Longitude (in decimal degrees) of the discharge 
+or marina location.  Once you have made these entries, it will prompt you for the additional information
+needed and calculate the closure area dimensions.  For the discharge analysis, it will prompt you for the
+discharge flow rate and the fecal coliform (FC) concentration (FC/100 mL).  Use the blue button (Click 
+for options to use) to view and select a fecal coliform concentration value to use in the calculations.
+</p>
+<p>
+For the marina buffer analysis, it will prompt you for the number of slips in the marina.  Default values
+are provided for the other factors such as persons per boat and slip occupancy.  If you have different 
+numbers for these entries that are supported by data, you can replace the default values with your
+numbers.  Use the "Map the Closure" button to see the closure area mapped, based on the coordinates you 
+provided at the beginning.  To start the process over, press the "Reset" button at the bottom.
+</p>
+
+<input type="button" value="Close" onclick="CloseMe()"/>
+
+</body>
+</html>
