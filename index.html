@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="Bluefish 2.2.11" />
+	<meta name="created" content="2022-07-28T00:36:23.497960412"/>
+	<meta name="changed" content="2022-07-28T16:10:19.850933925"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		td p { orphans: 0; widows: 0; background: transparent }
+	</style>
+	
+	<script type="text/javascript" src="VolDil.js"></script>
+
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" bgcolor="#f7f7d4" dir="ltr"><p style="line-height: 100%; margin-bottom: 0in">
+<font size="4" style="font-size: 16pt"><b>Volumetric Dilution
+Calculation</b></font></p>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+This calculator is provided FOR TRAINING PURPOSES ONLY.  
+It is NOT intended for dilution calculations in support of any regulatory actions.  
+Please consult with the U.S. Food and Drug Administration for procedures supporting regulatory actions.
+By clicking on "Continue" below, you acknowledge that you understand the purpose stated above.
+<br><br>
+ <input type="image" src="Help-icon.png" alt="Help" width="48" height="48" style="float: right"
+ 		onclick=" OpenHelp()">
+Below, select the type of analysis you wish to perform and the units of measure to employ.
+<br><br>
+</p>
+<table width="460" cellpadding="4" cellspacing="0">
+	<col width="195"/>
+
+	<col width="148"/>
+
+	<col width="91"/>
+
+	<tr valign="top">
+		<td width="135" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			Type of Analysis-></p>
+		</td>
+		<td width="148" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<input type="radio" id="discharge"
+			name="TypeAnalysis" value="Discharge"/>
+			    	<label for="discharge">Discharge</label>
+		</td>
+		<td width="141" style="border: 1px solid #000000; padding: 0.04in">
+			<input type="radio" id="marina"
+			name="TypeAnalysis" value="Marina"/>
+			    	<label for="marina">Marina</label>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="135" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			Units of Measure-></p>
+		</td>
+		<td width="148" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<input type="radio" id="english"
+			name="TypeUnits" value="English"/>
+			    	<label for="english">English</label>
+		</td>
+		<td width="141" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<input type="radio" id="metric"
+			name="TypeUnits" value="Metric"/>
+			    	<label for="metric">Metric</label>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			Discharge/  Marina location:
+		</td>
+		<td width="230" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<label for="lat">Latitude (DD)</label><input type="text" id="lat" value="39.2931"/>
+		</td>
+		<td width="230" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<label for="lon">Longitude (DD)</label><input type="text" id="lon" value="-74.5508"/>
+		</td>
+
+	</tr>
+
+</table>
+<br>
+<input type='button' value="Continue" onclick="NextScreen()">
+</body>
+</html>

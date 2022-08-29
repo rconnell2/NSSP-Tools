@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="Bluefish 2.2.11" />
+	<meta name="created" content="2022-07-21T14:43:26.601201683"/>
+	<meta name="changed" content="2022-07-29T00:00:57.099311944"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		td p { orphans: 0; widows: 0; background: transparent }
+	</style>
+	
+	<script type="text/javascript" src="VolDil.js"></script>
+	
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" bgcolor="#f7f7d4" dir="ltr"><p style="line-height: 100%; margin-bottom: 0in">
+<font size="4" style="font-size: 16pt"><b>Discharge Calculations</b></font></p>
+<p style="line-height: 100%; margin-bottom: 0in"><br/></p>
+
+ <input type="image" src="Help-icon.png" alt="Help" width="48" height="48" style="float: right"
+ 		onclick=" OpenHelp()">
+<!----------- Input Box for Load Factors ------------------>
+<h1>Marina Calculations</h1>
+<fieldset style="width:610px">
+   <legend><b>Load Calculations</b></legend>
+<table>
+		<tr>
+			<td><label for="Slips">Enter number of slips in the marina: </label></td>
+			<td><input style="text-align:right;" type="text" id="Slips" name="Slips"/></td>
+		</tr>
+		<tr> 
+		   <td><label for="SlipsOcc">Typical percent of slips occupied: </label></td>
+		   <td><input style="text-align:right;" type="text" id="SlipsOcc" name="SlipsOcc" value="100"/> %</td>
+		</tr>>
+	   <tr>>
+			<td><label for="PersonsPerBoat">Enter the average persons per boat: </label></td>
+			<td><input style="text-align:right;" type="text" id="PersonsPerBoat" name="PersonsPerBoat" value="2"/></td>
+	   </tr>
+		<tr>>	 
+			<td><label for="BoatsDisch">Typical percent of boats discharging: </label></td>
+			<td><input style="text-align:right;" type="text" id="BoatsDisch" name="BoatsDisch" value="100"/> %</td>
+		</tr>
+</table>
+
+<br/></p>
+<input type="button" id="calc" value="Calculate Load" onclick="LoadCalcMar()"/>
+</fieldset>
+
+<!-------------- Display Box for Load Calculations ------------------------>
+<table hidden id="tblLoad" width="643" cellpadding="4" cellspacing="0" style="background: transparent">
+	<col width="643"/>
+
+	<tr style="background: transparent" valign="top">
+		<td width="312" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p><font size="3" style="font-size: 12pt">
+			<b>Load = #slips x %slips occupied x persons/boat x %boats discharging x FC/person/day</b></font></p>
+			<p><font size="3" style="font-size: 12pt">
+			<p id= "DisplayLoad" class="nums"> </p></font></p>
+		</td>
+
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+
+</p>
+
+
+<!----------- Input Box for Volume Factors ------------------>
+<p hidden id="lblVolNeeded" style="line-height: 100%; margin-bottom: 0in">
+<b>Factor to calculate Volume needed for dilution</b></p>
+<table hidden id="tblVol" width="643" cellpadding="4" cellspacing="0">
+	<col width="332"/>
+
+	<col width="106"/>
+
+	<col width="205"/>
+
+	<tr valign="top">
+		<td width="332" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			Enter the Target Value for the Fecal Coliform concentration in the
+			receiving water (typically the applicable NSSP Geometric Mean
+			criterion);</p>
+		</td>
+		<td width="106" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0.04in 0in"><p>
+			<font size="3" style="font-size: 12pt">
+			<input type="text" style="text-align:right;" id="GetTarget" name="GetTarget" value="14"/></font></p>
+		</td>
+		<td width="205" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0.04in"><p>
+			<font size="3" style="font-size: 12pt">FC/100 mL</font></p><br>
+			<input type="button" id="btnCalcVol" style="background: #00ccff" value="Calculate Volume" onclick="CalcVol()" />
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/></p>
+
+<!----------- Display Box for Volume Needed ------------------>
+<table hidden id="tblVolNeeded" width="643" cellpadding="4" cellspacing="0" style="background: transparent">
+	<col width="633"/>
+
+	<tr style="background: transparent">
+		<td width="633" valign="top" bgcolor="#dddddd" style="background: #dddddd; border: 1px solid #000000; padding: 0.04in"><p>
+			<font size="3" style="font-size: 12pt"><b>Volume needed = Load <font face="Liberation Serif, serif">÷</font><font face="Liberation Serif, serif">
+			Target Concentration</font></b></font></p>
+			
+			<p><font size="3" style="font-size: 12pt">
+			<p id= "DisplayVol" class="nums"> </p>
+			<p id=”VolUnits”> </p></font></p>
+			<p id= "DilutionAchieved" class="nums"> </p>
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/>
+
+</p>
+<p style="font-weight: normal; line-height: 100%; margin-bottom: 0in">
+
+<!----------- Input Box for Area Factors ------------------>
+<p hidden id="lblAreaNeeded" style="line-height:100%; margin-bottom: 0in">
+<b>Factor to calculate Area needed for dilution</b></p>
+
+<table hidden id="tblAreaFactor" width="643" cellpadding="4" cellspacing="0">
+	<col width="305"/>
+
+	<col width="106"/>
+
+	<col width="205"/>
+
+	<tr valign="top">
+		<td width="305" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+		<p>Enter the average water depth in the waters suspected to be
+			impacted:</p>
+		</td>
+		<td width="106" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0.04in 0in"><p>
+			<font size="3" style="font-size: 12pt">
+			<input type="text" style="text-align:right;" id="WaterDepth" name="WaterDepth"/></font></p>
+		</td>
+		<td width="205" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0.04in"><p>
+			<font size="3" style="font-size: 12pt">
+				ft
+			</font></p><br>
+			<input type="button" id="btnCalcArea" style="background: #00ccff" value="Calculate Area" onclick="CalcArea()" />
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0in"><br/></p>
+
+<!-- Display Box for Area Needed-->
+<table hidden id="tblAreaNeeded" width="643" cellpadding="4" cellspacing="0" style="background: transparent">
+	<col width="633"/>
+
+	<tr style="background: transparent">
+		<td width="506" valign="top" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding: 0.04in"><p>
+			<font size="3" style="font-size: 12pt"><b>Area needed = Dilution Volume  
+			<font face="Liberation Serif, serif">÷</font><font face="Liberation Serif, serif">
+			</font><font face="Liberation Serif, serif">Water Depth</font></b></font></p>
+			
+			<p id= "DisplayArea" class="nums" align="right"> </p>
+			
+		</td>
+		<td width="126" valign="bottom" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding: 0.04in">
+			<p>	<select id="AreaUnits" name="AreaUnits" style="background: #00ccff" value="sq ft">
+					<option value="sqft">sq ft</option>
+					<option value="acres">acres</option>
+					<option value="sqmiles">sq mi</option> 
+				</select>			
+			</p>
+		</td>
+	</tr>
+</table>
+<p><br></p>
+
+<!--▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ Box for Area Shape ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬-->
+<p hidden id="lblAreaShape" style="line-height:100%; margin-bottom: 0in">
+<b>Desired shape for the closure area is:</b></p>
+
+<table hidden id="AreaShape" width="644" cellpadding="4" cellspacing="0">
+
+	<tr valign="top">
+		<td width="161" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in"><p>
+			<input type="radio" id="circle" name="ClosureShape" value="Circle" onchange="ShowSideValue()"/>
+			<label for="circle">Circle</label>
+		</td>
+		<td width="161" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: none; border-left: none; border-right: none; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0in; padding-right: 0in"><p>
+			<input type="radio" id="semicircle" name="ClosureShape" value="Semi-Circle" onchange="ShowSideValue()"/>
+			<label for="semicircle">Semi-circle</label>
+		</td>
+		<td width="161" bgcolor="#dddddd" style="background: #dddddd; border-top: 1px solid #000000; border-bottom: none; border-left: none; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.04in"><p>
+			<input type="radio" id="rectangle" name="ClosureShape" value="Rectangle" onchange="ShowSideValue()"/>
+			<label for="rectangle">Rectangle</label>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="33%" bgcolor="#dddddd" style="background: #dddddd; border-top: none; borderborder-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in"><p>
+			<br/>
+				<input id="btnCalcShape" type="button" style="background: #00ccff" value="Calculate Closure Dimensions" onclick="RadiusCalc()">
+			</p>
+		</td>
+		<td width="33%" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: none; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0in"><p>
+				<p hidden id="lblSideValue">Enter side 1 dimension:</p>
+			</p>
+		</td>
+		<td width="33%" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: none; border-left: none; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0in; padding-right: 0.04in"><p>
+
+				<input hidden type="text" id="SideValue" name="SideValue" />
+			</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td colspan="2" width="67%" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<p><font size="3" style="font-size: 12pt">
+			<p id= "txtRadius" class="nums"> </p></font></p>
+		</td>
+		<td width="33%" bgcolor="#dddddd" style="background: #dddddd; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.04in">
+			<br><select id="ShapeUnits" name="ShapeUnits" style="background: #00ccff" value="ft">
+				<option value="ft">feet</option>
+				<option value="yds">yards</option>
+				<option value="miles">miles</option> 
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input hidden type="button" id="Reset" value="Reset all parameters" onclick="CloseMe()"/>		
+		</td>
+		<td></td>
+		<td>
+			<input hidden type="button" id="btnMap" value="Map the Closure" onclick="MapCreate()"/>		
+		</td>
+	</tr>
+
+</table>
+
+<p hidden id="txtExample">Example of how shape would look</p>
+<table>
+	<tr>
+		<td>
+			<img hidden id="ClosureMap" src="CircularClosure.jpg" name="Image1" align="left" width="482" height="294" border="0"/>	
+		</td>	
+	</tr>
+	<tr>
+		<td>
+
+		</td>	
+	</tr>
+</table>
+<input type="button" id="EndMarker"/>
+</body>
+</html>

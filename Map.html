@@ -23,6 +23,12 @@
     integrity="sha512-E0DKVahIg0p1UHR2Kf9NX7x7TUewJb30mxkxEm2qOYTVJObgsAGpEol9F6iK6oefCbkJiA4/i6fnTHzM6H1kEA=="
     crossorigin=""></script>
 
+	<script type="text/javascript">
+		function CloseMe() {
+		var w = window.close('','_parent','');
+		}
+	</script>
+
 	<style>
 		html, body {
 			height: 100%;
@@ -39,6 +45,8 @@
 <body>
 
 <div id="map" style="width: 800px; height: 600px;"></div>
+<input type="button" value="Close Map" onclick="CloseMe()"/>
+
 <script>
 	var lat = localStorage.getItem("lat");
 	var lon = localStorage.getItem("lon");
